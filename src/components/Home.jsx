@@ -22,7 +22,7 @@ function Home() {
   }
 
   return (
-    <div className='flex justify-items-center items-center flex-wrap p-10'>
+    <div className='flex justify-items-center items-center flex-wrap pt-10 px-14'>
       {data.map((p) => <Pin key={p.objectId} {...p} picId={p.objectId} />)}
     </div>
   )

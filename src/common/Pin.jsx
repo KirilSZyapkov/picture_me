@@ -28,7 +28,7 @@ function Pin({
     const url = picture.url;
 
     return (
-        <div className='shadow-md max-w-xs text-center m-3 overflow-hidden bg-slate-200'>
+        <div style={{width: '300px', height: '250px'}} className='shadow-md max-w-xs text-center m-3 overflow-hidden bg-slate-200'>
             {(userUrl && url) && <Link to={`/details/${picId}`}>
                 <div>
                     <img className='w-full overflow-hidden' src={url} alt="image" />

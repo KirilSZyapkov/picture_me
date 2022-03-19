@@ -177,9 +177,9 @@ function Details() {
         <div className='flex items-center justify-center p-3'>
           <h1 className='font-bold'>More like this</h1>
         </div>
-        {list.length ? <div className='flex justify-items-center items-center flex-wrap p-10'>
+        {list.length ? <div className='flex justify-items-center items-center flex-wrap pt-1 px-14'>
           {list.map((el) => <Pin key={el.objectId} {...el} picId={el.objectId} />)}
-        </div> : <h1 className='font-bold ml-10'>No relative picture found</h1>}
+        </div> : <h1 className='font-bold ml-10'>No relative pictures found</h1>}
       </div>
     </div>
   );

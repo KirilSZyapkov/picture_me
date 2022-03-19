@@ -105,7 +105,7 @@ function Profile() {
                     </form>}
                 </div>
             </div>
-            <div className='flex justify-items-center items-center flex-wrap p-5'>
+            <div className='flex justify-items-center items-center flex-wrap pt-1 px-14'>
                 {data.map((pic) => <Pin key={pic.objectId} {...pic} picId={pic.objectId} />)}
             </div>
         </div>
