@@ -12,6 +12,7 @@ import Category from './components/Category';
 import Profile from './components/Profile';
 import Create from './components/Create';
 import Details from './components/Details';
+import User from './components/User';
 
 function App() {
 
@@ -44,7 +45,7 @@ function App() {
     setUser(JSON.parse(sessionStorage.getItem('user')));
   }
 
-  
+
 
   return (
     <AuthContext.Provider value={{ user, loginUser, logutUser, update, profile, refresh, setRefresh }}>
@@ -56,7 +57,7 @@ function App() {
           <Route path='/profile' element={<Profile />} />
           <Route path='/add-picture' element={<Create />} />
           <Route path='/details/:id' element={<Details />} />
-
+          <Route path='/user-profile/:id' element={<User />} />
 
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
