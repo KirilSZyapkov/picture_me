@@ -1,12 +1,14 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import pVideo from '../assets/share.mp4'
 import { addPicture } from '../services/data';
 import AuthContext from '../context/AuthContext';
 import { post } from '../services/uploadImage';
+import Notifications from '../common/Notifications';
 
 function Create() {
 
+  const [errorM, setErrorM] = useState(null);
   const { profile } = useContext(AuthContext);
   const id = profile.objectId;
   const navigation = useNavigate();
@@ -19,18 +21,24 @@ function Create() {
     const category = target.category.value;
     const description = target.description.value.trim();
 
-    const response = await post(file, file.name)
-    const picture = Object.assign({ __type: "File" }, response);
+    try {
 
-    const data = {
-      picture,
-      category,
-      description
+      const response = await post(file, file.name)
+      const picture = Object.assign({ __type: "File" }, response);
+
+      const data = {
+        picture,
+        category,
+        description
+      }
+
+      await addPicture(data, id);
+      navigation('/');
+
+    } catch (err) {
+      
+      setErrorM(err.message);
     }
-
-    await addPicture(data, id);
-
-    navigation('/');
   }
 
 
@@ -46,6 +54,7 @@ function Create() {
         className='w-full h-full object-cover'
       />
       <div className='absolute rounded-md bg-gray-100 p-5 w-3/4 top-44 left-44 opacity-70'>
+        {errorM && <Notifications setErrorM={setErrorM} errorM={errorM} />}
 
         <form onSubmit={uploadPicture}>
           <label htmlFor="picture">Upload picture</label>
