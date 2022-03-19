@@ -33,8 +33,11 @@ function Details() {
 
   useEffect(() => {
     async function fetch() {
-      const respons = await getUserById(details?.owner?.objectId);
-      setUser(respons);
+      if(details?.owner?.objectId){
+
+        const respons = await getUserById(details?.owner?.objectId);
+        setUser(respons);
+      }
 
     };
     fetch();
@@ -42,8 +45,11 @@ function Details() {
 
   useEffect(() => {
     async function fetch() {
-      const respons = await getPicturesByCategory(details?.category);
-      setCategoryList(respons.results);
+      if (details?.category) {
+
+        const respons = await getPicturesByCategory(details?.category);
+        setCategoryList(respons.results);
+      }
     }
     fetch();
   }, [update, details]);
@@ -56,8 +62,6 @@ function Details() {
 
   const likesList = details?.likes;
   const notIncluded = likesList?.some(m => m.userID === profile?.objectId);
-
-
 
   async function addLike() {
     const data = {
@@ -140,7 +144,7 @@ function Details() {
             <p className="font-bold">{user?.username}</p>
           </Link>
           <h2 className="mt-5 text-2xl">Comments</h2>
-          <div style={{ overflow: 'auto', "max-height": "230px" }}>
+          <div style={{ overflow: 'auto', maxHeight: "230px" }}>
             {details?.comments?.map((item) => (
               <div className="flex gap-2 mt-5 items-center bg-white rounded-lg" key={item.comment}>
                 <img
@@ -173,9 +177,9 @@ function Details() {
         <div className='flex items-center justify-center p-3'>
           <h1 className='font-bold'>More like this</h1>
         </div>
-        <div className='flex justify-items-center items-center flex-wrap p-10'>
+        {list.length ? <div className='flex justify-items-center items-center flex-wrap p-10'>
           {list.map((el) => <Pin key={el.objectId} {...el} picId={el.objectId} />)}
-        </div>
+        </div> : <h1 className='font-bold ml-10'>No relative picture found</h1>}
       </div>
     </div>
   );
