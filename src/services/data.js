@@ -33,7 +33,7 @@ export async function updatePicture(blogId, body) {
 }
 
 export async function getUserOwnPictures(userId) {
-    
+
     const q = JSON.stringify({
         owner: {
             __type: 'Pointer',
@@ -41,5 +41,11 @@ export async function getUserOwnPictures(userId) {
             objectId: userId
         }
     })
+    return await api.get('/classes/Storage?where=' + encodeURIComponent(q));
+}
+
+export async function getPicturesByCategory(category) {
+
+    const q = JSON.stringify({ category: category });
     return await api.get('/classes/Storage?where=' + encodeURIComponent(q));
 }
