@@ -31,7 +31,7 @@ function Profile() {
             setData(respons.results);
         }
         fetch();
-    }, []);
+    }, [id]);
 
     async function changePic(e) {
         e.preventDefault();
@@ -78,7 +78,7 @@ function Profile() {
     return (
         <div>
             <div className='relative'>
-                <img className='w-full h-250 shadol-lg object-cover' src={banner} alt='banner image' />
+                <img className='w-full h-250 shadol-lg object-cover' src={banner} alt='banner' />
 
                 <button className='absolute right-5 top-48 border-2 rounded-full p-2 bg-red-600' onClick={() => setToggleInputBanner(!toggleInputBanner)}>{toggleInputBanner ? <AiFillCloseCircle className='text-lg' /> : <BsFillPencilFill className='text-lg' />}</button>
                 {toggleInputBanner && <form onSubmit={changeBanner} className='mt-3 absolute  top-2'>
