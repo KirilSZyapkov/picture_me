@@ -10,6 +10,7 @@ function User() {
     const [userPictures, setUserPictures] = useState([]);
     const [userLikes, setUserLikes] = useState([]);
     const [selectedPage, setSelectedPage] = useState('User Pictures');
+    const [selected, setSelected] = useState(selectedPage);
 
     const { id } = useParams();
 
@@ -22,11 +23,15 @@ function User() {
             setUserPictures(responsUserPictures.results);
         }
         fetch();
-    }, []);
+    }, [id]);
 
     console.log(user);
     console.log(userPictures);
 
+    let isUserPictures = selected === 'User Pictures' ? 'font-bold bg-red-600 text-white' : '';
+    let isUserLikes = selected === 'User Likes' ? 'font-bold bg-red-600 text-white' : '';
+
+    
     return (
         <div>
             <div className='relative'>
@@ -43,8 +48,8 @@ function User() {
                 </div>
             </div>
             <div className='flex justify-center items-center mt-10'>
-                <button onClick={() => setSelectedPage('User Page')} className='ml-3 border-2 rounded-full border-red-600 p-2  w-32 items-center'>User pictures</button>
-                <button onClick={() => setSelectedPage('User Likes')} className='ml-3 border-2 rounded-full border-red-600 p-2  w-32 items-center'>User Likes</button>
+                <button onClick={() => {setSelectedPage('User Pictures'); setSelected('User Pictures')}} className={`ml-3 border-2 rounded-full border-red-600 p-2  w-32 items-center ${isUserPictures}`}>User pictures</button>
+                <button onClick={() => {setSelectedPage('User Likes'); setSelected('User Likes')}} className={`ml-3 border-2 rounded-full border-red-600 p-2  w-32 items-center ${isUserLikes}`}>User Likes</button>
             </div>
 
             <div className='flex justify-items-center items-center flex-wrap pt-1 px-14'>
