@@ -43,7 +43,7 @@ function Create() {
 
 
   return (
-    <div className='flex justify-start item-center flex-col h-screen'>
+    <div className='absolute flex justify-start item-center flex-col h-screen'>
       <video
         src={pVideo}
         type='pVideo/mp4'
