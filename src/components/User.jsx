@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getUserOwnPictures } from '../services/data';
+import { getUserOwnPictures, getAllPictures } from '../services/data';
 import { getUserById } from '../services/userApi';
 import Pin from '../common/Pin';
 
@@ -9,7 +9,23 @@ function User() {
     const [user, setUser] = useState({});
     const [userPictures, setUserPictures] = useState([]);
     const [userLikes, setUserLikes] = useState([]);
+    const [selectedPage, setSelectedPage] = useState('User Pictures');
 
+    const { id } = useParams();
+
+    useEffect(() => {
+        async function fetch() {
+            const responsUser = await getUserById(id);
+            const responsUserPictures = await getUserOwnPictures(id);
+
+            setUser(responsUser);
+            setUserPictures(responsUserPictures.results);
+        }
+        fetch();
+    }, []);
+
+    console.log(user);
+    console.log(userPictures);
 
     return (
         <div>
@@ -26,13 +42,13 @@ function User() {
                     <p className='text-2xl ml-2'>Test</p>
                 </div>
             </div>
-            <div>
-                <button>User pictures</button>
-<button>User Likes</button>
+            <div className='flex justify-center items-center mt-10'>
+                <button onClick={() => setSelectedPage('User Page')} className='ml-3 border-2 rounded-full border-red-600 p-2  w-32 items-center'>User pictures</button>
+                <button onClick={() => setSelectedPage('User Likes')} className='ml-3 border-2 rounded-full border-red-600 p-2  w-32 items-center'>User Likes</button>
             </div>
-            
+
             <div className='flex justify-items-center items-center flex-wrap pt-1 px-14'>
-                {userPictures.map((pic) => <Pin key={pic.objectId} {...pic} picId={pic.objectId} />)}
+                {/* {userPictures.map((pic) => <Pin key={pic.objectId} {...pic} picId={pic.objectId} />)} */}
             </div>
         </div>
     )
