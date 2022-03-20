@@ -138,11 +138,11 @@ function Details() {
               {details?.category}
             </h1>
             <p className="mt-3">{details?.description}</p>
-          </div>
           <Link to={`/user-profile/${user?.objectId}`} className="flex gap-2 mt-5 items-center bg-white rounded-lg ">
             <img src={userPicUrl || img} className="w-10 h-10 rounded-full" alt="user-profile" />
             <p className="font-bold">{user?.username}</p>
           </Link>
+          </div>
           <h2 className="mt-5 text-2xl">Comments</h2>
           <div style={{ overflow: 'auto', maxHeight: "230px" }}>
             {details?.comments?.map((item) => (
