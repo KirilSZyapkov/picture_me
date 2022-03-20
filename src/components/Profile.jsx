@@ -99,7 +99,7 @@ function Profile() {
                         </div>
                     </div>
                 </div>
-                <div className='p-2'>
+                <div className='p-1'>
                     <p className='text-2xl ml-2'>{profile.username}</p>
                     <p className='ml-3 border-2 rounded-full border-red-600 p-2 flex relative w-32 items-center'> <MdAddAPhoto className='text-sm mr-1' /><Link to='/add-picture'>Add picture</Link></p>
                 </div>
