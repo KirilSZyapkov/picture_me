@@ -4,6 +4,7 @@ import { getUserOwnPictures, getAllPictures } from '../services/data';
 import { getUserById } from '../services/userApi';
 import AuthContext from '../context/AuthContext';
 import Pin from '../common/Pin';
+import Spinner from '../common/loader/Spinner';
 import img from '../assets/img_avatar.png';
 
 function User() {
@@ -50,13 +51,12 @@ function User() {
         }
     });
 
-    console.log(user);
-    console.log(userPictures);
-    console.log(listOfLikes);
-
     let isUserPictures = selected === 'User Pictures' ? 'font-bold bg-red-600 text-white' : '';
     let isUserLikes = selected === 'User Likes' ? 'font-bold bg-red-600 text-white' : '';
 
+    if (!user.objectId && userPictures.length === 0 && userLikes.length === 0) {
+        return <Spinner message={"Loading ..."} />
+    }
 
     return (
         <div>
