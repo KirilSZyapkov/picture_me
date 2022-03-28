@@ -11,9 +11,9 @@ function UploadImage({
     toggleInput
 }) {
 
-    const [state, setState] = useState(null);
+    const [state, setState] = useState(false);
 
-    function addPicture(e) {
+    function addPicture() {
         setState(true);
     }
 

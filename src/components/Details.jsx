@@ -121,7 +121,7 @@ function Details() {
             src={picUrl || notFound}
             alt="user-post"
           />
-          {(!isOwner && userPicUrl) ? <>
+          {(!isOwner && userPicUrl && profile.username) ? <>
             {!notIncluded && <div className="absolute bottom-0 right-0 flex items-center justify-between p-3">
               <div className="flex gap-2 items-center">
                 <button onClick={addLike} className="bg-secondaryColor p-2 text-xl rounded-full flex items-center justify-center text-dark opacity-75 hover:opacity-100">

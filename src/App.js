@@ -14,6 +14,8 @@ import Create from './components/Create';
 import Details from './components/Details';
 import User from './components/User';
 
+import UserGuard from './guards/UserGuard';
+
 function App() {
 
   const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('user')));
@@ -59,12 +61,14 @@ function App() {
           <Route path='/details/:id' element={<Details />} />
           <Route path='/user-profile/:id' element={<User />} />
 
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-
+          <Route element={<UserGuard />}>
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+          </Route>
+          
         </Routes>
       </div>
-    </AuthContext.Provider>
+    </AuthContext.Provider >
   );
 }
 
