@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { AiOutlineCloudUpload } from "react-icons/ai";
 
 function UploadImage({
@@ -11,13 +11,18 @@ function UploadImage({
     toggleInput
 }) {
 
-    
+    const [state, setState] = useState(null);
+
+    function addPicture(e) {
+        setState(true);
+    }
+
     return (
-        <div className='absolute flex flex-col justify-center items-center top-0 right-0 left-0 bottom-0 bg-stone-400 z-40'>
+        <div className='absolute flex flex-col justify-center items-center top-0 right-0 left-0 bottom-0 bg-blackOverlay z-40'>
 
             <form className='mt-3 flex flex-col' onSubmit={type === "banner" ? changeBanner : changePic}>
-                <input className='hidden' type='file' name='picture' id='file-input' required />
-                <label className='w-60 h-60 border-2 flex flex-col justify-center items-center text-2xl mb-2' htmlFor='file-input'> <AiOutlineCloudUpload /> Choose a file...</label>
+                <input className='hidden' type='file' name='picture' id='file-input' required onChange={addPicture} />
+                <label className='w-80 h-80 border-2 flex flex-col justify-center items-center text-2xl mb-2 text-white' htmlFor='file-input'> <AiOutlineCloudUpload />{state ? "Picture ready for uploading!" : "Choose a file..."}</label>
                 <button className='bg-red-600 p-1 rounded mb-2'>Upload photo</button>
 
             </form>

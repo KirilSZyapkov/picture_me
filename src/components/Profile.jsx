@@ -95,7 +95,7 @@ function Profile() {
                         {errorM && <Notifications setErrorM={setErrorM} errorM={errorM} />}
                         <div className='relative left-60 -top-44 w-1/2'>
                             <div className='flex items-center text-xs'>
-                                <button className='relative -left-24 top-7 border-2 rounded-full p-2 bg-red-600' onClick={() => setToggleInput(!toggleInput)}>{toggleInput ? <AiFillCloseCircle className='text-lg' /> : <BsFillPencilFill className='text-lg' />}</button>
+                                <button className='relative -left-24 top-7 border-2 rounded-full p-2 bg-red-600' onClick={() => setToggleInput(!toggleInput)}><BsFillPencilFill className='text-lg' /></button>
                             </div>
                         </div>
                     </div>
