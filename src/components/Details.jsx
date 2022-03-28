@@ -15,13 +15,13 @@ function Details() {
 
   const [details, setDetails] = useState({});
   const [categoryList, setCategoryList] = useState([]);
-  const [user, setUser] = useState({});
+  const [useR, setUser] = useState({});
   const [errorM, setErrorM] = useState(null);
   const [update, setUpdate] = useState(true);
   const { id } = useParams();
-  const { profile } = useContext(AuthContext);
+  const { profile, user } = useContext(AuthContext);
 
-  const isOwner = profile?.objectId === user?.objectId;
+  const isOwner = profile?.objectId === useR?.objectId;
 
   useEffect(() => {
     async function fetch() {
@@ -33,7 +33,7 @@ function Details() {
 
   useEffect(() => {
     async function fetch() {
-      if(details?.owner?.objectId){
+      if (details?.owner?.objectId) {
 
         const respons = await getUserById(details?.owner?.objectId);
         setUser(respons);
@@ -58,7 +58,7 @@ function Details() {
 
   const profPicUrl = profile.imageUrl || '';
   const picUrl = details?.picture?.url;
-  const userPicUrl = user?.imageUrl;
+  const userPicUrl = useR?.imageUrl;
 
   const likesList = details?.likes;
   const notIncluded = likesList?.some(m => m.userID === profile?.objectId);
@@ -121,7 +121,7 @@ function Details() {
             src={picUrl || notFound}
             alt="user-post"
           />
-          {(!isOwner && userPicUrl && profile.username) ? <>
+          {(!isOwner && userPicUrl && user) ? <>
             {!notIncluded && <div className="absolute bottom-0 right-0 flex items-center justify-between p-3">
               <div className="flex gap-2 items-center">
                 <button onClick={addLike} className="bg-secondaryColor p-2 text-xl rounded-full flex items-center justify-center text-dark opacity-75 hover:opacity-100">
@@ -138,10 +138,10 @@ function Details() {
               {details?.category}
             </h1>
             <p className="mt-3">{details?.description}</p>
-          <Link to={`/user-profile/${user?.objectId}`} className="flex gap-2 mt-5 items-center bg-white rounded-lg ">
-            <img src={userPicUrl || img} className="w-10 h-10 rounded-full" alt="user-profile" />
-            <p className="font-bold">{user?.username}</p>
-          </Link>
+            <Link to={`/user-profile/${useR?.objectId}`} className="flex gap-2 mt-5 items-center bg-white rounded-lg ">
+              <img src={userPicUrl || img} className="w-10 h-10 rounded-full" alt="user-profile" />
+              <p className="font-bold">{useR?.username}</p>
+            </Link>
           </div>
           <h2 className="mt-5 text-2xl">Comments</h2>
           <div style={{ overflow: 'auto', maxHeight: "230px" }}>

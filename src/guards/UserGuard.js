@@ -4,9 +4,9 @@ import { Navigate, Outlet } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 
 function UserGuard() {
-    const { profile } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
-    return profile.username ? <Navigate to={'/'} /> : <Outlet />
+    return user ? <Navigate to={'/'} /> : <Outlet />
 }
 
 export default UserGuard;

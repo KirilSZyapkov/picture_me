@@ -15,6 +15,7 @@ import Details from './components/Details';
 import User from './components/User';
 
 import UserGuard from './guards/UserGuard';
+import RouteGuard from './guards/RouteGuard';
 
 function App() {
 
@@ -24,8 +25,10 @@ function App() {
 
   useEffect(() => {
     async function fetch() {
-      const respons = await getUser();
-      setProfile(respons);
+      
+        const respons = await getUser();
+        setProfile(respons);
+    
     }
 
     fetch();
@@ -56,16 +59,19 @@ function App() {
         <Routes>
           <Route exect path='/' element={<Home />} />
           <Route path='/:category' element={<Category />} />
-          <Route path='/profile' element={<Profile />} />
-          <Route path='/add-picture' element={<Create />} />
-          <Route path='/details/:id' element={<Details />} />
           <Route path='/user-profile/:id' element={<User />} />
+          <Route path='/details/:id' element={<Details />} />
+
+          <Route element={<RouteGuard />}>
+            <Route path='/profile' element={<Profile />} />
+            <Route path='/add-picture' element={<Create />} />
+          </Route>
 
           <Route element={<UserGuard />}>
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
           </Route>
-          
+
         </Routes>
       </div>
     </AuthContext.Provider >
