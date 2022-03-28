@@ -11,6 +11,7 @@ import { getUserOwnPictures } from '../services/data';
 import { post } from '../services/uploadImage';
 import { updateUser } from '../services/userApi';
 import Spinner from '../common/loader/Spinner';
+import UploadImage from '../common/UploadImage';
 
 function Profile() {
 
@@ -76,42 +77,39 @@ function Profile() {
     }
 
     return (
-        <div>
-            <div className='relative'>
-                <img className='w-full h-250 shadol-lg object-cover' src={banner} alt='banner' />
+        <>
+            {toggleInputBanner && <UploadImage type={'banner'} changeBanner={changeBanner} setToggleInputBanner={setToggleInputBanner} toggleInputBanner={toggleInputBanner} />}
+            {toggleInput && <UploadImage type={'profilePicture'} changePic={changePic} setToggleInput={setToggleInput} toggleInput={toggleInput} />}
+            <div>
+                <div className='relative'>
+                    <img className='w-full h-250 shadol-lg object-cover' src={banner} alt='banner' />
 
-                <button className='absolute right-5 top-48 border-2 rounded-full p-2 bg-red-600' onClick={() => setToggleInputBanner(!toggleInputBanner)}>{toggleInputBanner ? <AiFillCloseCircle className='text-lg' /> : <BsFillPencilFill className='text-lg' />}</button>
-                {toggleInputBanner && <form onSubmit={changeBanner} className='mt-3 absolute  top-2'>
-                    <input type='file' name='picture' placeholder='Upload picture' />
-                    <button className='bg-red-600 p-1 rounded'>Upload photo</button>
-                </form>}
+                    <button className='absolute right-5 top-48 border-2 rounded-full p-2 bg-red-600' onClick={() => setToggleInputBanner(!toggleInputBanner)}><BsFillPencilFill className='text-lg' /></button>
 
-            </div>
-            <div className='flex'>
-                <div className='static h-40 overscroll-none'>
+                </div>
+                <div className='flex'>
+                    <div className='static h-40 overscroll-none'>
 
-                    <img style={{ "minWidth": '190px', "minHeight": '190px', "maxWidth": '190px', "maxHeight": '190px' }} className='rounded-full relative ml-5 -top-20 border-8 border-white object-fill' src={url || img} alt='pic' />
+                        <img style={{ "minWidth": '190px', "minHeight": '190px', "maxWidth": '190px', "maxHeight": '190px' }} className='rounded-full relative ml-5 -top-20 border-8 border-white object-fill' src={url || img} alt='pic' />
 
-                    {errorM && <Notifications setErrorM={setErrorM} errorM={errorM} />}
-                    <div className='relative left-60 -top-44 w-1/2'>
-                        <div className='flex items-center text-xs'>
-                            <button className='relative -left-24 top-7 border-2 rounded-full p-2 bg-red-600' onClick={() => setToggleInput(!toggleInput)}>{toggleInput ? <AiFillCloseCircle className='text-lg' /> : <BsFillPencilFill className='text-lg' />}</button>
+                        {errorM && <Notifications setErrorM={setErrorM} errorM={errorM} />}
+                        <div className='relative left-60 -top-44 w-1/2'>
+                            <div className='flex items-center text-xs'>
+                                <button className='relative -left-24 top-7 border-2 rounded-full p-2 bg-red-600' onClick={() => setToggleInput(!toggleInput)}>{toggleInput ? <AiFillCloseCircle className='text-lg' /> : <BsFillPencilFill className='text-lg' />}</button>
+                            </div>
                         </div>
                     </div>
+                    <div className='p-1'>
+                        <p className='text-2xl ml-2'>{profile.username}</p>
+                        <p className='ml-3 border-2 rounded-full border-red-600 p-2 flex relative w-32 items-center'> <MdAddAPhoto className='text-sm mr-1' /><Link to='/add-picture'>Add picture</Link></p>
+                    </div>
                 </div>
-                <div className='p-1'>
-                    <p className='text-2xl ml-2'>{profile.username}</p>
-                    <p className='ml-3 border-2 rounded-full border-red-600 p-2 flex relative w-32 items-center'> <MdAddAPhoto className='text-sm mr-1' /><Link to='/add-picture'>Add picture</Link></p>
+               
+                <div className='flex justify-items-center items-center flex-wrap pt-1 px-14'>
+                    {data.map((pic) => <Pin key={pic.objectId} {...pic} picId={pic.objectId} />)}
                 </div>
             </div>
-                        {toggleInput && <form onSubmit={changePic} className='mt-3'>
-                            <input type='file' name='picture' placeholder='Upload picture' />
-                            <button className='bg-red-600 p-1 rounded'>Upload photo</button>
-                        </form>}
-            <div className='flex justify-items-center items-center flex-wrap pt-1 px-14'>
-                {data.map((pic) => <Pin key={pic.objectId} {...pic} picId={pic.objectId} />)}
-            </div>
-        </div>
+        </>
     )
 }
 
