@@ -1,5 +1,4 @@
 import * as api from './api';
-import * as userAPI from './userApi';
 
 export const login = api.login;
 export const register = api.register;

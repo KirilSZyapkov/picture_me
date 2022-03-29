@@ -49,6 +49,8 @@ function User() {
 
             listOfLikes.push(data);
         }
+
+        return picture;
     });
 
     let isUserPictures = selected === 'User Pictures' ? 'font-bold bg-red-600 text-white' : '';

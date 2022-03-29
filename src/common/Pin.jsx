@@ -21,7 +21,7 @@ function Pin({
         }
 
         fetch();
-    }, []);
+    }, [owner?.objectId]);
 
     const userUrl = user?.imageUrl || ''
 
@@ -31,7 +31,7 @@ function Pin({
         <div style={{width: '300px', height: '250px'}} className='shadow-md max-w-xs text-center m-3 overflow-hidden bg-slate-200'>
             {(userUrl && url) && <Link to={`/details/${picId}`}>
                 <div>
-                    <img className='w-full overflow-hidden' src={url} alt="image" />
+                    <img className='w-full overflow-hidden' src={url} alt="user pic" />
                     <div className='flex items-center justify-between mt-3'>
                         <div className='flex items-center'>
                             <img className='w-8 h-8 rounded-full ml-3' src={userUrl || img} alt="avatar"></img>

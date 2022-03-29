@@ -67,7 +67,7 @@ function Register() {
       await register(body)
 
     } catch (err) {
-      
+
       setErrorM(err.message);
     }
   }
@@ -92,7 +92,7 @@ function Register() {
               <h2 className='text-center mb-7 font-bold'>Sign up with Social Media or Manually</h2>
               <div className="flex flex-col items-center justify-between">
                 <GoogleLogin
-                  clientId='355724897092-l265jpakksa7mv9n5ku3gapjvi1nr1tg.apps.googleusercontent.com'
+                  clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                   render={(renderProps) => (
                     <button
                       type='button'

@@ -76,7 +76,7 @@ function Login() {
                             <h2 className='text-center mb-7 font-bold'>Login with Social Media or Manually</h2>
                             <div className="flex flex-col items-center justify-between">
                                 <GoogleLogin
-                                    clientId='2406655842-slencfig8tv1grqvnns0v78qufkdmnr0.apps.googleusercontent.com'
+                                    clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                                     render={(renderProps) => (
                                         <button
                                             type='button'
