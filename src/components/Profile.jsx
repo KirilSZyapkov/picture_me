@@ -2,7 +2,6 @@ import { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MdAddAPhoto } from 'react-icons/md';
 import { BsFillPencilFill } from "react-icons/bs";
-import { AiFillCloseCircle } from "react-icons/ai";
 import Pin from '../common/Pin';
 import AuthContext from '../context/AuthContext';
 import Notifications from '../common/Notifications';

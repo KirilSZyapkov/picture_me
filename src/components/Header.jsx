@@ -20,15 +20,15 @@ function Header() {
 
   const [toggle, setToggle] = useState(false);
   const navigation = useNavigate();
-  const { user, profile, logutUser, update } = useContext(AuthContext);
+  const { user, profile, logutUser } = useContext(AuthContext);
   const url = profile.imageUrl || '';
 
   return (
     <header>
       <div className='flex justify-between bg-slate-100 items-center p-1'>
         <div className='flex items-center'>
-          <img className='w-8 h-8 ml-5' src={logo} alt="Avatar"></img>
-          <Link to='/'><p className='font-bold'>Picture Me</p></Link>
+          <img className='w-8 h-8 ml-5 logo' src={logo} alt="Avatar"></img>
+          <Link to='/'><p className='font-bold logo-text'>Picture Me</p></Link>
         </div>
 
         <div className='flex items-center mr-10'>

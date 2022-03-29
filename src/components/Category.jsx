@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getPicturesByCategory } from '../services/data';
 import Pin from '../common/Pin';
+import Spinner from '../common/loader/Spinner';
 
 function Category() {
 
@@ -16,6 +17,10 @@ function Category() {
     fetch();
 
   }, [category]);
+
+  if(data.length === 0){
+    return <Spinner message={"Loading ..."}/>
+  }
 
   return (
     <div className='flex justify-items-center items-center flex-wrap p-10'>

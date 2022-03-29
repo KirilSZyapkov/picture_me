@@ -159,7 +159,7 @@ function Details() {
               </div>
             ))}
           </div>
-          <form onSubmit={addComment} className="flex flex-wrap mt-6 gap-3">
+          { user && <form onSubmit={addComment} className="flex flex-wrap mt-6 gap-3">
             <img src={profPicUrl || img} className="w-10 h-10 rounded-full cursor-pointer" alt="user-profile" />
 
             <input
@@ -170,7 +170,7 @@ function Details() {
 
             />
             <button className="bg-red-500 text-white rounded-full px-6 py-2 font-semibold text-base outline-none">Done</button>
-          </form>
+          </form>}
         </div>
       </div>
       <div>
